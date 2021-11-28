@@ -1,0 +1,9 @@
+service : {
+  back: () -> ();
+  getButtonText: () -> (text) query;
+  getCounter: () -> (nat) query;
+  getImage: () -> (text) query;
+  getText: () -> (text) query;
+  next: () -> (text);
+  resetCounter: () -> ();
+}

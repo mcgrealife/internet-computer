@@ -4,16 +4,25 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const button = e.target.querySelector("button");
 
-  const name = document.getElementById("name").value.toString();
-
   button.setAttribute("disabled", true);
-
-  // Interact with foo actor, calling the greet method
-  const greeting = await website.greet(name);
+  document.getElementById("next").innerText = "Calling blockchain!";
+  setTimeout(function() {
+    document.getElementById("next").innerText = 'Reaching Consensus...';
+  }, 1000);
+  
+  var storyText = await website.next();
+  var buttonText = await website.getButtonText();
+  var imageURL = await website.getImage();
 
   button.removeAttribute("disabled");
 
-  document.getElementById("greeting").innerText = greeting;
+  document.getElementById("storyText").innerText = storyText;
+  document.getElementById("next").innerText = buttonText;
+  document.getElementById("picture").src = imageURL;
 
   return false;
+});
+
+window.addEventListener('load', (event) => {
+  website.resetCounter();
 });
